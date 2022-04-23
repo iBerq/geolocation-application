@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style/style.css" />
+    <meta charset="utf-8">
+    <title>Geolocation Application</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+  <body>
+    <div class="top">
+      <h1>Geolocation Application</h1>
+    </div>
+    <div class="main">
+      <div id="country-btn-div" class="btn-div">
+        <button id="country-btn" class="btn" onclick="showCountrySection()">Show country</button>
+      </div>
+      <div id="northpole-btn-div" class="btn-div">
+        <button id="northpole-btn" class="btn" onclick="distanceToNorthPoleSection()">Find distance to North Pole</button>
+      </div>
+      <div id="moon-btn-div" class="btn-div">
+        <button id="moon-btn" class="btn" onclick="distanceToMoonCoreSection()">Find distance to Moon's core</button>
+      </div>
+      <div id="input-div" class="input-div">
+        <div id="inv-lat-lon" class="error-div">
+          <text class="error-val">Invalid latitude or longitude. Check your latitude and longitude values.</text>
+        </div>
+        <div class="row">
+          <div class="col-label">
+            <label for="lat">Latitude:</label>
+          </div>
+          <div class="col-box">
+            <input type="number" step="any" id="lat" name="latitude" placeholder="Latitude..">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-label">
+            <label for="lon">Longitude:</label>
+          </div>
+          <div class="col-box">
+            <input type="number" step="any" id="lon" name="longitude" placeholder="Longitude..">
+          </div>
+        </div>
+        <div class="row-submit" onclick="showCountryOnMap()">
+          <input type="submit" value="Show the country">
+        </div>
+      </div>
+      <div id="get-loc-div" class="get-loc-div">
+        <div id="get-loc-btn" class="get-loc-btn" onclick="getCurrentLoc()">
+          <input type="submit" value="Get current coordinates">
+        </div>
+      </div>
+      <div id= "dist-moon-div" class="dist-moon-div">
+        <div class="dist-moon-box">
+          <p id="dist-moon">asd</p>
+        </div>
+      </div>
+      <div id="map"></div>
+    </div>
+    <script src="js/script.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

@@ -130,6 +130,56 @@ async function showCountryOnMap() {
   }
 }
 
+/*
+async function showCountryOnMap2(lat, lon) {
+
+  const givenPos = {
+    lat: lat,
+    lng: lon,
+  };
+
+  var country = "";
+  await geocoder
+    .geocode({ location: givenPos })
+    .then((response) => {
+      country = response.results[response.results.length - 1].formatted_address;
+    })
+    .catch((e) => console.log("Geocoder failed due to: " + e));
+
+  console.log('country:' , country);
+  return country;
+} module.exports = showCountryOnMap2;
+
+showCountryOnMap2();
+
+function haversine_distance2(lat1,lat2,lon1,lon2){
+  if(typeof lat1 === "number" && typeof lat2 === "number" && typeof lon1 === "number" && typeof lon2 === "number"){
+    if(-90 <= lat1 && lat1 <= 90 && -90 <= lat2 && lat2 <= 90 && -180 <= lon1 && lon1 <= 180 && -180 <= lon2 && lon2 <= 180){
+      var R = 6371.071; // Radius of the Earth in miles
+      var rlat1 = lat1 * (Math.PI / 180); // Convert degrees to radians
+      var rlat2 = lat2 * (Math.PI / 180); // Convert degrees to radians
+      var difflat = rlat2 - rlat1; // Radian difference (latitudes)
+      var difflon = (lon2 - lon1) * (Math.PI / 180); // Radian difference (longitudes)
+
+      var d =
+        2 *
+        R *
+        Math.asin(
+          Math.sqrt(
+            Math.sin(difflat / 2) * Math.sin(difflat / 2) +
+              Math.cos(rlat1) *
+                Math.cos(rlat2) *
+                Math.sin(difflon / 2) *
+                Math.sin(difflon / 2)
+          )
+        );
+      return d;
+    }
+  }
+  return false;
+} module.exports = haversine_distance2;
+*/
+
 function haversine_distance(mk1, mk2) {
   var R = 6371.071; // Radius of the Earth in miles
   var rlat1 = mk1.position.lat() * (Math.PI / 180); // Convert degrees to radians

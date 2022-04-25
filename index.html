@@ -40,12 +40,13 @@
             <input type="number" step="any" id="lon" name="longitude" placeholder="Longitude..">
           </div>
         </div>
-        <div class="row-submit" onclick="showCountryOnMap()">
+        <div id="show-country-btn" class="row-submit" onclick="showCountryOnMap()">
           <input type="submit" value="Show the country">
         </div>
-      </div>
-      <div id="get-loc-div" class="get-loc-div">
-        <div id="get-loc-btn" class="get-loc-btn" onclick="getCurrentLoc()">
+        <div id="calc-dist-moon-btn" class="row-submit" onclick="calculateDistanceToMoonCore()">
+          <input type="submit" value="Calculate distance to moon's core">
+        </div>
+        <div id="get-loc-btn" class="row-submit" onclick="getCurrentLoc()">
           <input type="submit" value="Get current coordinates">
         </div>
       </div>

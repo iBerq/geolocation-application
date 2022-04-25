@@ -6,14 +6,19 @@ var map;
 var infoWindow;
 var geocoder;
 var input_div = document.getElementById("input-div");
+var show_country_btn = document.getElementById("show-country-btn");
 var lat = document.getElementById("lat");
 var lon = document.getElementById("lon");
 var inv_lat_lon = document.getElementById("inv-lat-lon");
 var dist_moon_div = document.getElementById("dist-moon-div");
 var dist_moon = document.getElementById("dist-moon");
-var get_loc_div = document.getElementById("get-loc-div");
+var get_loc_btn = document.getElementById("get-loc-btn");
+var calc_dist_moon_btn = document.getElementById("calc-dist-moon-btn");
 
 function showCountrySection() {
+  show_country_btn.style.display = "inline-flex";
+  get_loc_btn.style.display = "none";
+  calc_dist_moon_btn.style.display = "none";
   if (northpole_btn_div.style.display === "none") {
     northpole_btn_div.style.display = "flex";
     moon_btn_div.style.display = "flex";
@@ -42,21 +47,20 @@ function distanceToNorthPoleSection() {
 }
 
 function distanceToMoonCoreSection() {
+  show_country_btn.style.display = "none";
+  get_loc_btn.style.display = "inline-flex";
+  calc_dist_moon_btn.style.display = "inline-flex";
   if (country_btn_div.style.display === "none") {
     country_btn_div.style.display = "flex";
     northpole_btn_div.style.display = "flex";
     input_div.style.display = "none";
     dist_moon_div.style.display = "none";
-    get_loc_div.style.display = "none";
     lat.value = "";
     lon.value = "";
   } else {
     country_btn_div.style.display = "none";
     northpole_btn_div.style.display = "none";
     input_div.style.display = "block";
-    dist_moon_div.style.display = "flex";
-    get_loc_div.style.display = "block";
-    calculateDistanceToMoonCore();
   }
 }
 
@@ -197,7 +201,25 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 function calculateDistanceToMoonCore() {
-  dist_moon.innerHTML = "asdsadasd";
+  if (!validateLatitude(lat.value) || !validateLongitude(lon.value)) {
+    inv_lat_lon.style.display = "inline-flex";
+    return;
+  }
+  inv_lat_lon.style.display = "none";
+
+  var rad = Math.PI / 180,
+    date = new Date(),
+    dayMs = 1000 * 60 * 60 * 24,
+    J1970 = 2440588,
+    J2000 = 2451545,
+    julian = date.valueOf() / dayMs - 0.5 + J1970,
+    toDays = julian - J2000,
+    distance = 385001 - 20905 * Math.cos(rad * (134.963 + 13.064993 * toDays));
+  dist_moon.innerHTML =
+    "Distance to moon's core from your location " +
+    distance.toFixed(2) +
+    " km.";
+  dist_moon_div.style.display = "flex";
 }
 
 function getCurrentLoc() {
